@@ -1,3 +1,5 @@
+using ECommersShop.FacadPattern;
+using ECommersShop.FacadPattern.Roles;
 using ECommersShop.Persistance;
 using Microsoft.EntityFrameworkCore;
 
@@ -12,6 +14,10 @@ builder.Services.AddDbContext<AppDbContex>(option =>
 });
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+
+// User Services Inject
+builder.Services.AddTransient<IUsersServicesFacad, UsersServicesFacad>();
+
 
 var app = builder.Build();
 
