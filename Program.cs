@@ -18,6 +18,8 @@ builder.Services.AddSwaggerGen();
 // User Services Inject
 builder.Services.AddTransient<IUsersServicesFacad, UsersServicesFacad>();
 
+// Roles Services Inject
+builder.Services.AddTransient<IRolesSeviceFacad, RolesSeviceFacad>();
 
 var app = builder.Build();
 
