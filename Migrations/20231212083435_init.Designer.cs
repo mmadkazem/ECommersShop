@@ -13,7 +13,7 @@ namespace ECommersShop.Migrations
 {
     [DbContext(typeof(AppDbContex))]
     [Migration("20231212083435_init")]
-    partial class init
+    partial class Init
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
