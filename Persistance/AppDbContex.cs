@@ -1,4 +1,5 @@
 using ECommersShop.Entity;
+using ECommersShop.Entity.Product;
 using Microsoft.EntityFrameworkCore;
 
 namespace ECommersShop.Persistance
@@ -13,5 +14,7 @@ namespace ECommersShop.Persistance
 
         public DbSet<User> Users { get; set; }
         public DbSet<UserInRole> UserInRoles { get; set; }
+        public DbSet<Product> Products { get; set; }
+        public DbSet<Category> Categories { get; set; }
     }
 }
