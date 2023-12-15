@@ -4,6 +4,6 @@ namespace ECommersShop.Entity.Product
 {
     public class Category : BaseEntity
     {
-        string? Name { get; set; }
+        string Name { get; set; }
     }
 }

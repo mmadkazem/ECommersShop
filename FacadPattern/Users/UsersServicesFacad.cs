@@ -16,7 +16,7 @@ namespace ECommersShop.FacadPattern
         private readonly AppDbContex _contex;
         public UsersServicesFacad(AppDbContex contex) => _contex = contex;
 
-        IGetAllUsersService? _getAllUsers;
+        IGetAllUsersService _getAllUsers;
         IGetAllUsersService IUsersServicesFacad.GetAllUsers
         {
             get
@@ -25,7 +25,7 @@ namespace ECommersShop.FacadPattern
                     new GetAllUsersService(_contex);
             }
         }
-        private IGetUserByIdService? _getUserById;
+        private IGetUserByIdService _getUserById;
         IGetUserByIdService IUsersServicesFacad.GetUserById
         {
             get
@@ -35,7 +35,7 @@ namespace ECommersShop.FacadPattern
             }
         }
 
-        private IGetAllUserRemovedService? _getAllUserRemoved;
+        private IGetAllUserRemovedService _getAllUserRemoved;
         IGetAllUserRemovedService IUsersServicesFacad.GetAllUserRemoved
         {
             get
@@ -45,7 +45,7 @@ namespace ECommersShop.FacadPattern
             }
         }
 
-        private IGetUserRemovedByIdService? _getUserRemovedById;
+        private IGetUserRemovedByIdService _getUserRemovedById;
         IGetUserRemovedByIdService IUsersServicesFacad.GetUserRemovedById
         {
             get
@@ -57,7 +57,7 @@ namespace ECommersShop.FacadPattern
 
         // Commands Services
 
-        private IRegisterUserService? _registerUser;
+        private IRegisterUserService _registerUser;
         IRegisterUserService IUsersServicesFacad.RegisterUser
         {
             get
@@ -67,7 +67,7 @@ namespace ECommersShop.FacadPattern
             }
         }
 
-        private IUpdateUserService? _updateUser;
+        private IUpdateUserService _updateUser;
         IUpdateUserService IUsersServicesFacad.UpdateUser
         {
             get
@@ -76,21 +76,21 @@ namespace ECommersShop.FacadPattern
                     new UpdateUserService(_contex);
             }
         }
-        private IRemoveUserService? _removeUser;
+        private IRemoveUserService _removeUser;
         IRemoveUserService IUsersServicesFacad.RemoveUser {
             get{
                 return _removeUser = _removeUser ??
                     new RemoveUserService(_contex);
             }
         }
-        private IReturnRemovedUserService? _returnRemovedUser;
+        private IReturnRemovedUserService _returnRemovedUser;
         IReturnRemovedUserService IUsersServicesFacad.ReturnRemovedUser {
             get{
                 return _returnRemovedUser = _returnRemovedUser ??
                     new ReturnRemovedUserService(_contex);
             }
         }
-        private IHardRemovedUserService? _hardRemovedUser;
+        private IHardRemovedUserService _hardRemovedUser;
         IHardRemovedUserService IUsersServicesFacad.HardRemovedUser {
             get{
                 return _hardRemovedUser = _hardRemovedUser ??

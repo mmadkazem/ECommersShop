@@ -13,7 +13,7 @@ namespace ECommersShop.FacadPattern.Roles
         private readonly AppDbContex _contex;
         public RolesSeviceFacad(AppDbContex contex) => _contex = contex;
 
-        private IGetRolesByUserIdService? _getRolesByUserId;
+        private IGetRolesByUserIdService _getRolesByUserId;
         public IGetRolesByUserIdService GetRolesByUserId
         {
             get
@@ -23,7 +23,7 @@ namespace ECommersShop.FacadPattern.Roles
             }
         }
 
-        private IGetRolesReomvedByUserIdService? _getRolesReomvedByUserId;
+        private IGetRolesReomvedByUserIdService _getRolesReomvedByUserId;
         public IGetRolesReomvedByUserIdService GetRolesReomvedByUserId
         {
             get
@@ -33,7 +33,7 @@ namespace ECommersShop.FacadPattern.Roles
             }
         }
 
-        private IAddNewRoleInUserService? _addNewRoleInUser;
+        private IAddNewRoleInUserService _addNewRoleInUser;
         public IAddNewRoleInUserService AddNewRoleInUser
         {
             get
@@ -42,7 +42,7 @@ namespace ECommersShop.FacadPattern.Roles
                     new AddNewRoleInUserService(_contex);
             }
         }
-        private IRemovedRolesUserService? _removedRolesUser;
+        private IRemovedRolesUserService _removedRolesUser;
         public IRemovedRolesUserService RemovedRolesUser
         {
             get
@@ -52,7 +52,7 @@ namespace ECommersShop.FacadPattern.Roles
             }
         }
 
-        private IUpdateRoleInUserService? _updateRoleInUser;
+        private IUpdateRoleInUserService _updateRoleInUser;
         public IUpdateRoleInUserService UpdateRoleInUser
         {
             get
@@ -62,7 +62,7 @@ namespace ECommersShop.FacadPattern.Roles
             }
         }
 
-        private IHardRemovedRolesInUserService? _hardRemovedRolesInUser;
+        private IHardRemovedRolesInUserService _hardRemovedRolesInUser;
         public IHardRemovedRolesInUserService HardRemovedRolesInUser
         {
             get

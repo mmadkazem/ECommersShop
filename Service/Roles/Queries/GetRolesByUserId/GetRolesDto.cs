@@ -2,7 +2,7 @@ namespace ECommersShop.Service.Roles.Queries.GetRoles
 {
     public record GetRolesDto
     (
-        string? RoleName,
+        string RoleName,
         DateTime? UpdateTime,
         DateTime? InsertTime
     );
