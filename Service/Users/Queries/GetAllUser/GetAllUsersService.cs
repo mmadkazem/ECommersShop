@@ -6,9 +6,9 @@ namespace ECommersShop.Service.Users.Queries.GetAllUser
 {
     public class GetAllUsersService : IGetAllUsersService
     {
-        private readonly AppDbContex _context;
+        private readonly DataBaseContext _context;
 
-        public GetAllUsersService(AppDbContex context) => _context = context;
+        public GetAllUsersService(DataBaseContext context) => _context = context;
 
         public async Task<ResultsDto<GetUserDto>> Execute()
         {

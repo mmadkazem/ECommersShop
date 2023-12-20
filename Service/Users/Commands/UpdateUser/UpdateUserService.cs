@@ -6,13 +6,13 @@ namespace ECommersShop.Service.Users.Commands.UpdateUser
 {
     public class UpdateUserService : IUpdateUserService
     {
-        private readonly AppDbContex _contex;
-        public UpdateUserService(AppDbContex contex) => _contex = contex;
+        private readonly DataBaseContext _context;
+        public UpdateUserService(DataBaseContext context) => _context = context;
 
         public async Task<ResultDto> Execute(int id, UpdateUserDto model)
         {
 
-            var user = await _contex.Users
+            var user = await _context.Users
                         .Where(u => u.Id == id && u.IsRemoved == false)
                         .FirstOrDefaultAsync();
 
@@ -27,7 +27,7 @@ namespace ECommersShop.Service.Users.Commands.UpdateUser
             user.FullName = model.FullName;
             user.Email = model.Email;
             user.UpdateTime = DateTime.Now;
-            await _contex.SaveChangesAsync();
+            await _context.SaveChangesAsync();
 
             return new ResultDto
             {

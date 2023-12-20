@@ -5,8 +5,8 @@ namespace ECommersShop.Service.Users.Commands.HardRemoveUser
 {
     public class HardRemovedUserService : IHardRemovedUserService
     {
-        private readonly AppDbContex _context;
-        public HardRemovedUserService(AppDbContex context) => _context = context;
+        private readonly DataBaseContext _context;
+        public HardRemovedUserService(DataBaseContext context) => _context = context;
 
         public async Task<ResultDto> Execute(int id)
         {

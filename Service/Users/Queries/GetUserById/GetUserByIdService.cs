@@ -7,8 +7,8 @@ namespace ECommersShop.Service.Users.Queries.GetUserById
 {
     public class GetUserByIdService : IGetUserByIdService
     {
-        private readonly AppDbContex _context;
-        public GetUserByIdService(AppDbContex context) => _context =context;
+        private readonly DataBaseContext _context;
+        public GetUserByIdService(DataBaseContext context) => _context =context;
         public async Task<ResultDto<GetUserDto>> Execute(int id)
         {
             var user = await _context.Users
@@ -20,7 +20,7 @@ namespace ECommersShop.Service.Users.Queries.GetUserById
                 return new ResultDto<GetUserDto>
                 {
                     IsSucssecc = false,
-                    Message = "This User Not Exite!!!"
+                    Message = "This user does not exist!!!!!!"
                 };
             }
             return new ResultDto<GetUserDto>

@@ -6,8 +6,8 @@ namespace ECommersShop.Service.Users.Queries.GetAllUserRemoved
 {
     public class GetAllUserRemovedService : IGetAllUserRemovedService
     {
-        private readonly AppDbContex _context;
-        public GetAllUserRemovedService(AppDbContex context) => _context = context;
+        private readonly DataBaseContext _context;
+        public GetAllUserRemovedService(DataBaseContext context) => _context = context;
         public async Task<ResultsDto<GetRemovedUserDto>> Execute()
         {
             var user = await _context.Users
@@ -19,7 +19,7 @@ namespace ECommersShop.Service.Users.Queries.GetAllUserRemoved
                 return new ResultsDto<GetRemovedUserDto>
                 {
                     IsSucssecc = false,
-                    Message = "Not users removed exited!!!"
+                    Message = "users does not exist!!!"
                 };
             }
             return new ResultsDto<GetRemovedUserDto>

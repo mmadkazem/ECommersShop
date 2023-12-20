@@ -7,8 +7,8 @@ namespace ECommersShop.Service.Users.Queries.GetUserReomvedById
 {
     public class GetUserRemovedByIdService : IGetUserRemovedByIdService
     {
-        private readonly AppDbContex _context;
-        public GetUserRemovedByIdService(AppDbContex context) => _context = context;
+        private readonly DataBaseContext _context;
+        public GetUserRemovedByIdService(DataBaseContext context) => _context = context;
 
         public async Task<ResultDto<GetRemovedUserDto>> Execute(int id)
         {
@@ -21,7 +21,7 @@ namespace ECommersShop.Service.Users.Queries.GetUserReomvedById
                 return new ResultDto<GetRemovedUserDto>
                 {
                     IsSucssecc = false,
-                    Message = "Not user removed exited!!!"
+                    Message = "Not user does not exist!!!!!!"
                 };
             }
             return new ResultDto<GetRemovedUserDto>

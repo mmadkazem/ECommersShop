@@ -7,8 +7,8 @@ namespace ECommersShop.Service.Roles.Commands.UpdateRole
 {
     public class UpdateRoleInUserService : IUpdateRoleInUserService
     {
-        private readonly AppDbContex _contex;
-        public UpdateRoleInUserService(AppDbContex contex) => _contex = contex;
+        private readonly DataBaseContext _context;
+        public UpdateRoleInUserService(DataBaseContext context) => _context = context;
 
         public async Task<ResultDto> Execute(int userId, Role? OldRole, Role? RoleUpdate)
         {
@@ -20,7 +20,7 @@ namespace ECommersShop.Service.Roles.Commands.UpdateRole
                     Message = "This role has already been added"
                 };
             }
-            var userInRole = await _contex.UserInRoles
+            var userInRole = await _context.UserInRoles
                             .Where(u => !u.IsRemoved
                                 && u.UserId == userId
                                 && OldRole == u.Role)
@@ -30,13 +30,13 @@ namespace ECommersShop.Service.Roles.Commands.UpdateRole
                 return new ResultDto
                 {
                     IsSucssecc = false,
-                    Message = "This roles user not exite!!!"
+                    Message = "This roles user does not exist!!!"
                 };
             }
 
             userInRole.Role = RoleUpdate;
             userInRole.UpdateTime = DateTime.Now;
-            await _contex.SaveChangesAsync();
+            await _context.SaveChangesAsync();
             return new ResultDto
             {
                 IsSucssecc = true,

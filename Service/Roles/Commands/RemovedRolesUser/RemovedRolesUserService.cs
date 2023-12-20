@@ -7,12 +7,12 @@ namespace ECommersShop.Service.Roles.Commands.RemovedRolesUser
 {
     public class RemovedRolesUserService : IRemovedRolesUserService
     {
-        private readonly AppDbContex _contex;
-        public RemovedRolesUserService(AppDbContex contex) => _contex = contex;
+        private readonly DataBaseContext _context;
+        public RemovedRolesUserService(DataBaseContext context) => _context = context;
 
         public async Task<ResultDto> Execute(int userId, Role roleRemoved)
         {
-            var userInRole = await _contex.UserInRoles
+            var userInRole = await _context.UserInRoles
                         .Where(u => !u.IsRemoved &&
                             u.UserId == userId &&
                             u.Role == roleRemoved)
@@ -28,7 +28,7 @@ namespace ECommersShop.Service.Roles.Commands.RemovedRolesUser
             }
             userInRole.IsRemoved = true;
             userInRole.RemoveTime = DateTime.Now;
-            await _contex.SaveChangesAsync();
+            await _context.SaveChangesAsync();
 
             return new ResultDto
             {

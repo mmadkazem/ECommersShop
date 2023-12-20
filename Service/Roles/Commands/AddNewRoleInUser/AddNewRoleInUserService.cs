@@ -7,12 +7,12 @@ namespace ECommersShop.Service.Roles.Commands
 {
     public class AddNewRoleInUserService : IAddNewRoleInUserService
     {
-        private readonly AppDbContex _contex;
-        public AddNewRoleInUserService(AppDbContex contex) => _contex = contex;
+        private readonly DataBaseContext _context;
+        public AddNewRoleInUserService(DataBaseContext context) => _context = context;
 
         public async Task<ResultDto> Execute(int userId, Role role)
         {
-            var roles = await _contex.UserInRoles
+            var roles = await _context.UserInRoles
                         .Where(u => !u.IsRemoved && u.UserId == userId)
                         .ToListAsync();
             if (roles.Count == 3)
@@ -34,7 +34,7 @@ namespace ECommersShop.Service.Roles.Commands
                     };
                 }
             }
-            var user = await _contex.Users
+            var user = await _context.Users
                         .Where(u => !u.IsRemoved && u.Id == userId)
                         .FirstOrDefaultAsync();
             if (user is null)
@@ -53,8 +53,8 @@ namespace ECommersShop.Service.Roles.Commands
                 Role = role
             };
 
-            await _contex.UserInRoles.AddAsync(userInRole);
-            await _contex.SaveChangesAsync();
+            await _context.UserInRoles.AddAsync(userInRole);
+            await _context.SaveChangesAsync();
 
             return new ResultDto
             {

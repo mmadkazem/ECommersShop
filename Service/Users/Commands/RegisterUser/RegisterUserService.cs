@@ -6,8 +6,8 @@ namespace ECommersShop.Service.Users.Commands.RegisterUser
 {
     public class RegisterUserService : IRegisterUserService
     {
-        private readonly AppDbContex _context;
-        public RegisterUserService(AppDbContex context) => _context = context;
+        private readonly DataBaseContext _context;
+        public RegisterUserService(DataBaseContext context) => _context = context;
 
         public async Task<ResultDto> Execute(RegisterUserDto model)
         {

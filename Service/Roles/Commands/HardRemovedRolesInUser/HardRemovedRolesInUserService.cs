@@ -7,13 +7,13 @@ namespace ECommersShop.Service.Roles.Commands.HardRemovedRolesInUser
 {
     public class HardRemovedRolesInUserService : IHardRemovedRolesInUserService
     {
-        private readonly AppDbContex _contex;
+        private readonly DataBaseContext _context;
 
-        public HardRemovedRolesInUserService(AppDbContex contex) => _contex = contex;
+        public HardRemovedRolesInUserService(DataBaseContext context) => _context = context;
 
         public async Task<ResultDto> Execute(int userId, Role roleRemoved)
         {
-            var roles = await _contex.UserInRoles
+            var roles = await _context.UserInRoles
                         .Where(u => u.UserId == userId)
                         .ToListAsync();
 
@@ -26,7 +26,7 @@ namespace ECommersShop.Service.Roles.Commands.HardRemovedRolesInUser
                 };
             }
 
-            var role = await _contex.UserInRoles.Where(u => 
+            var role = await _context.UserInRoles.Where(u => 
                         u.UserId == userId &&
                         u.Role == roleRemoved)
                         .FirstOrDefaultAsync();
@@ -39,8 +39,8 @@ namespace ECommersShop.Service.Roles.Commands.HardRemovedRolesInUser
                     Message = "This roles user not exite!!!"
                 };
             }
-            _contex.UserInRoles.Remove(role);
-            await _contex.SaveChangesAsync();
+            _context.UserInRoles.Remove(role);
+            await _context.SaveChangesAsync();
 
             return new ResultDto
             {

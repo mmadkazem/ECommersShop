@@ -6,8 +6,8 @@ namespace ECommersShop.Service.Users.Commands.RemoveUser
 {
     public class RemoveUserService : IRemoveUserService
     {
-        private readonly AppDbContex _context;
-        public RemoveUserService(AppDbContex context) => _context = context;
+        private readonly DataBaseContext _context;
+        public RemoveUserService(DataBaseContext context) => _context = context;
         public async Task<ResultDto> Execute(int id)
         {
             var user = await _context.Users

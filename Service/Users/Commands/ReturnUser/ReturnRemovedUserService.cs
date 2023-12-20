@@ -5,8 +5,8 @@ namespace ECommersShop.Service.Users.Commands.ReturnUser
 {
     public class ReturnRemovedUserService : IReturnRemovedUserService
     {
-        private readonly AppDbContex _context;
-        public ReturnRemovedUserService(AppDbContex context) => _context = context;
+        private readonly DataBaseContext _context;
+        public ReturnRemovedUserService(DataBaseContext context) => _context = context;
         public async Task<ResultDto> Execute(int id)
         {
             var user = await _context.Users.FindAsync(id);
