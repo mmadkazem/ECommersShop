@@ -7,6 +7,6 @@ namespace ECommersShop.Entity
         public string FullName { get; set; }
         public string Password { get; set; }
         public string Email { get; set; }
-        public ICollection<UserInRole> UserInRoles { get; set; }
+        public virtual ICollection<UserInRole> UserInRoles { get; set; }
     }
 }

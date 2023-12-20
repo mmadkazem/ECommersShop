@@ -10,8 +10,8 @@ namespace ECommersShop.FacadPattern.Roles
 {
     public class RolesSeviceFacad : IRolesSeviceFacad
     {
-        private readonly AppDbContex _contex;
-        public RolesSeviceFacad(AppDbContex contex) => _contex = contex;
+        private readonly DataBaseContext _context;
+        public RolesSeviceFacad(DataBaseContext context) => _context = context;
 
         private IGetRolesByUserIdService _getRolesByUserId;
         public IGetRolesByUserIdService GetRolesByUserId
@@ -19,7 +19,7 @@ namespace ECommersShop.FacadPattern.Roles
             get
             {
                 return _getRolesByUserId = _getRolesByUserId ??
-                    new GetRolesByUserIdService(_contex);
+                    new GetRolesByUserIdService(_context);
             }
         }
 
@@ -29,7 +29,7 @@ namespace ECommersShop.FacadPattern.Roles
             get
             {
                 return _getRolesReomvedByUserId = _getRolesReomvedByUserId ??
-                    new GetRolesReomvedByUserIdService(_contex);
+                    new GetRolesReomvedByUserIdService(_context);
             }
         }
 
@@ -39,7 +39,7 @@ namespace ECommersShop.FacadPattern.Roles
             get
             {
                 return _addNewRoleInUser = _addNewRoleInUser ??
-                    new AddNewRoleInUserService(_contex);
+                    new AddNewRoleInUserService(_context);
             }
         }
         private IRemovedRolesUserService _removedRolesUser;
@@ -48,7 +48,7 @@ namespace ECommersShop.FacadPattern.Roles
             get
             {
                 return _removedRolesUser = _removedRolesUser ??
-                    new RemovedRolesUserService(_contex);
+                    new RemovedRolesUserService(_context);
             }
         }
 
@@ -58,7 +58,7 @@ namespace ECommersShop.FacadPattern.Roles
             get
             {
                 return _updateRoleInUser = _updateRoleInUser ??
-                    new UpdateRoleInUserService(_contex);
+                    new UpdateRoleInUserService(_context);
             }
         }
 
@@ -68,7 +68,7 @@ namespace ECommersShop.FacadPattern.Roles
             get
             {
                 return _hardRemovedRolesInUser = _hardRemovedRolesInUser ?? 
-                    new HardRemovedRolesInUserService(_contex);
+                    new HardRemovedRolesInUserService(_context);
             }
         }
     }

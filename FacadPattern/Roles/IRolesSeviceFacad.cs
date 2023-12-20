@@ -9,8 +9,11 @@ namespace ECommersShop.FacadPattern.Roles
 {
     public interface IRolesSeviceFacad
     {
+        // Queries Services
         IGetRolesByUserIdService GetRolesByUserId { get; }
         IGetRolesReomvedByUserIdService GetRolesReomvedByUserId { get; }
+
+        // Commands Services
         IAddNewRoleInUserService AddNewRoleInUser { get; }
         IRemovedRolesUserService RemovedRolesUser { get; }
         IUpdateRoleInUserService UpdateRoleInUser { get; }
