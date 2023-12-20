@@ -1,4 +1,6 @@
 using ECommersShop.FacadPattern;
+using ECommersShop.FacadPattern.Categories;
+using ECommersShop.FacadPattern.Products;
 using ECommersShop.FacadPattern.Roles;
 using ECommersShop.Persistance;
 using Microsoft.EntityFrameworkCore;
@@ -8,7 +10,7 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddControllers();
-builder.Services.AddDbContext<AppDbContex>(option =>
+builder.Services.AddDbContext<DataBaseContext>(option =>
 {
     option.UseNpgsql(builder.Configuration.GetConnectionString("postgresServer"));
 });
@@ -20,6 +22,12 @@ builder.Services.AddTransient<IUsersServicesFacad, UsersServicesFacad>();
 
 // Roles Services Inject
 builder.Services.AddTransient<IRolesSeviceFacad, RolesSeviceFacad>();
+
+// Products Services Inject
+builder.Services.AddTransient<IProductsServiceFacad, ProductsServiceFacad>();
+
+// Categeries Services Inject
+builder.Services.AddTransient<ICategoriesServiceFacad, CategoriesServiceFacad>();
 
 var app = builder.Build();
 
