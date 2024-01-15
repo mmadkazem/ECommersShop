@@ -1,4 +1,5 @@
 using ECommersShop.Entity;
+using ECommersShop.Entity.Cart;
 using ECommersShop.Entity.Products;
 using Microsoft.EntityFrameworkCore;
 
@@ -18,5 +19,8 @@ namespace ECommersShop.Persistance
         public DbSet<Category> Categories { get; set; }
         public DbSet<Product> Products { get; set; }
         public DbSet<ProductInCategory> ProductInCategories { get; set; }
+
+        public DbSet<Cart> Carts { get; set; }
+        public DbSet<CartItem> CartItems { get; set; }
     }
 }
