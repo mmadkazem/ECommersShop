@@ -1,7 +1,5 @@
 using ECommersShop.Common.Dto;
-using ECommersShop.Entity;
 using ECommersShop.Entity.Cart;
-using ECommersShop.Entity.Products;
 using ECommersShop.Persistance;
 using Microsoft.EntityFrameworkCore;
 
@@ -33,46 +31,60 @@ namespace ECommersShop.Service.Carts.Commands.AddNewCart
                     Message = "This user does not exist!!!"
                 };
             }
-            var cart = new Cart
+            var cart = _context.Carts
+            .Where(c => !c.IsRemoved && !c.Finished && c.UserId == model.UserId)
+            .FirstOrDefault();
+            if (cart == null)
             {
-                User = user,
-                UserId = user.Id,
-                Finished = false
-            };
+                Cart newCart = new Cart()
+                {
+                    Finished = false,
+                };
+                _context.Carts.Add(newCart);
+                _context.SaveChanges();
+                cart = newCart;
+            }
 
-            var cartItems = new List<CartItem>();
+
             foreach (var item in model.CartItems)
             {
                 var product = await _context.Products
                                 .Where(p => !p.IsRemoved && p.Id == item.ProductId)
                                 .FirstOrDefaultAsync();
-                if (product is null)
+                if (product.Inventory < item.Count)
                 {
                     return new ResultDto
                     {
                         IsSucssecc = false,
-                        Message = $"This product {item.ProductId} does not exist!!!"
+                        Message = "inventory does not exist!!!"
                     };
                 }
-                cartItems.Add(new CartItem
+                var cartItem = await _context.CartItems
+                            .Where(p => p.ProductId == item.ProductId && p.CartId == cart.Id)
+                            .FirstOrDefaultAsync();
+
+                if (cartItem is not null)
                 {
-                    Cart = cart,
-                    CartId = cart.Id,
-                    Product = product,
-                    ProductId = product.Id,
-                    Count = item.Count
-                });
-
-
+                    cartItem.Count++;
+                }
+                else
+                {
+                    CartItem newCartItem = new CartItem()
+                    {
+                        Cart = cart,
+                        Count = item.Count,
+                        Price = product.Price * item.Count,
+                        Product = product,
+                    };
+                    _context.CartItems.Add(newCartItem);
+                    _context.SaveChanges();
+                }
             }
-            cart.CartItems = cartItems;
-            await _context.Carts.AddAsync(cart);
-            await _context.SaveChangesAsync();
 
-            return new ResultDto
+            return new ResultDto()
             {
                 IsSucssecc = true,
-                Message = "This cart added successfully..."
+                Message = "This cartItem added successfully..."
             };
         }
     }
