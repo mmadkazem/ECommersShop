@@ -66,6 +66,7 @@ namespace ECommersShop.Service.Carts.Commands.AddNewCart
                 if (cartItem is not null)
                 {
                     cartItem.Count++;
+                    cartItem.TotalPrice = cartItem.PriceProduct * cartItem.PriceProduct;
                 }
                 else
                 {
@@ -73,7 +74,7 @@ namespace ECommersShop.Service.Carts.Commands.AddNewCart
                     {
                         Cart = cart,
                         Count = item.Count,
-                        Price = product.Price * item.Count,
+                        TotalPrice = product.Price * item.Count,
                         Product = product,
                     };
                     _context.CartItems.Add(newCartItem);

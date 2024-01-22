@@ -1,5 +1,4 @@
 using ECommersShop.Common.Dto;
-using ECommersShop.Entity.Cart;
 using ECommersShop.Persistance;
 using Microsoft.EntityFrameworkCore;
 
@@ -40,14 +39,14 @@ namespace ECommersShop.Service.Carts.Queries.GetUserCart
             var newProductDeatails = new List<ProductDeatailDto>();
             foreach (var item in cart.CartItems)
             {
-                getUserCart.TotalPrice += item.Price * item.Count;
+                getUserCart.TotalPrice += item.PriceProduct * item.Count;
                 getUserCart.CountCartItem++;
                 newProductDeatails.Add(new ProductDeatailDto
                 {
                     CartItemId = item.Id,
                     Name = item.Product.Name,
-                    ProductPrice = item.Price,
-                    ProductTotalPrice = item.Price * item.Count,
+                    ProductPrice = item.PriceProduct,
+                    ProductTotalPrice = item.TotalPrice,
                     Count = item.Count
                 });
             }
