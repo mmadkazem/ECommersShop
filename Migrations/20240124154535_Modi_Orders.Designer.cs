@@ -3,6 +3,7 @@ using System;
 using ECommersShop.Persistance;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
@@ -11,9 +12,11 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace ECommersShop.Migrations
 {
     [DbContext(typeof(DataBaseContext))]
-    partial class DataBaseContextModelSnapshot : ModelSnapshot
+    [Migration("20240124154535_Modi_Orders")]
+    partial class Modi_Orders
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -165,20 +168,26 @@ namespace ECommersShop.Migrations
                     b.Property<DateTime?>("RemoveTime")
                         .HasColumnType("timestamp without time zone");
 
-                    b.Property<Guid?>("RequestPayId")
+                    b.Property<long>("RequestPayId")
+                        .HasColumnType("bigint");
+
+                    b.Property<Guid?>("RequestPayId1")
                         .HasColumnType("uuid");
 
                     b.Property<DateTime?>("UpdateTime")
                         .HasColumnType("timestamp without time zone");
 
-                    b.Property<int>("UserId")
+                    b.Property<long>("UserId")
+                        .HasColumnType("bigint");
+
+                    b.Property<int?>("UserId1")
                         .HasColumnType("integer");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("RequestPayId");
+                    b.HasIndex("RequestPayId1");
 
-                    b.HasIndex("UserId");
+                    b.HasIndex("UserId1");
 
                     b.ToTable("Orders");
                 });
@@ -200,13 +209,19 @@ namespace ECommersShop.Migrations
                     b.Property<bool>("IsRemoved")
                         .HasColumnType("boolean");
 
-                    b.Property<int>("OrderId")
+                    b.Property<long>("OrderId")
+                        .HasColumnType("bigint");
+
+                    b.Property<int?>("OrderId1")
                         .HasColumnType("integer");
 
                     b.Property<int>("PriceProduct")
                         .HasColumnType("integer");
 
-                    b.Property<int>("ProductId")
+                    b.Property<long>("ProductId")
+                        .HasColumnType("bigint");
+
+                    b.Property<int?>("ProductId1")
                         .HasColumnType("integer");
 
                     b.Property<DateTime?>("RemoveTime")
@@ -220,9 +235,9 @@ namespace ECommersShop.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("OrderId");
+                    b.HasIndex("OrderId1");
 
-                    b.HasIndex("ProductId");
+                    b.HasIndex("ProductId1");
 
                     b.ToTable("OrderDetails");
                 });
@@ -448,13 +463,11 @@ namespace ECommersShop.Migrations
                 {
                     b.HasOne("ECommersShop.Entity.Finances.RequestPay", "RequestPay")
                         .WithMany("Orders")
-                        .HasForeignKey("RequestPayId");
+                        .HasForeignKey("RequestPayId1");
 
                     b.HasOne("ECommersShop.Entity.User", "User")
                         .WithMany("Orders")
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("UserId1");
 
                     b.Navigation("RequestPay");
 
@@ -465,15 +478,11 @@ namespace ECommersShop.Migrations
                 {
                     b.HasOne("ECommersShop.Entity.Orders.Order", "Order")
                         .WithMany("OrderDetails")
-                        .HasForeignKey("OrderId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("OrderId1");
 
                     b.HasOne("ECommersShop.Entity.Products.Product", "Product")
                         .WithMany()
-                        .HasForeignKey("ProductId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("ProductId1");
 
                     b.Navigation("Order");
 

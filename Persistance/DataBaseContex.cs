@@ -1,6 +1,7 @@
 using ECommersShop.Entity;
 using ECommersShop.Entity.Cart;
 using ECommersShop.Entity.Finances;
+using ECommersShop.Entity.Orders;
 using ECommersShop.Entity.Products;
 using Microsoft.EntityFrameworkCore;
 
@@ -25,5 +26,8 @@ namespace ECommersShop.Persistance
         public DbSet<CartItem> CartItems { get; set; }
 
         public DbSet<RequestPay> RequestPays { get; set; }
+
+        public DbSet<Order> Orders { get; set; }
+        public DbSet<OrderDetail> OrderDetails { get; set; }
     }
 }

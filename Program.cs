@@ -2,6 +2,7 @@ using ECommersShop.FacadPattern;
 using ECommersShop.FacadPattern.Carts;
 using ECommersShop.FacadPattern.Categories;
 using ECommersShop.FacadPattern.Finances;
+using ECommersShop.FacadPattern.Orders;
 using ECommersShop.FacadPattern.Products;
 using ECommersShop.FacadPattern.Roles;
 using ECommersShop.Persistance;
@@ -36,6 +37,9 @@ builder.Services.AddTransient<ICartServiceFacad, CartServiceFacad>();
 
 // Finance Service Inject
 builder.Services.AddTransient<IFinancesServiceFacad, FinancesServiceFacad>();
+
+// Orders Service Inject
+builder.Services.AddTransient<IOrserFacadService, OrserFacadService>();
 
 var app = builder.Build();
 

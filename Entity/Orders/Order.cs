@@ -7,13 +7,13 @@ namespace ECommersShop.Entity.Orders
     {
 
         public virtual User User { get; set; }
-        public long UserId { get; set; }
+        public int UserId { get; set; }
 
         public virtual RequestPay RequestPay { get; set; }
-        public long RequestPayId { get; set; }
+
+        public ICollection<OrderDetail> OrderDetails { get; set; }
 
         public OrderState OrderState { get; set; }
-
         public string Address { get; set; }
     }
 }

@@ -3,6 +3,7 @@ using System;
 using ECommersShop.Persistance;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
@@ -11,9 +12,11 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace ECommersShop.Migrations
 {
     [DbContext(typeof(DataBaseContext))]
-    partial class DataBaseContextModelSnapshot : ModelSnapshot
+    [Migration("20240124155117_Modi_Orders2")]
+    partial class Modi_Orders2
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -165,7 +168,7 @@ namespace ECommersShop.Migrations
                     b.Property<DateTime?>("RemoveTime")
                         .HasColumnType("timestamp without time zone");
 
-                    b.Property<Guid?>("RequestPayId")
+                    b.Property<Guid>("RequestPayId")
                         .HasColumnType("uuid");
 
                     b.Property<DateTime?>("UpdateTime")
@@ -448,7 +451,9 @@ namespace ECommersShop.Migrations
                 {
                     b.HasOne("ECommersShop.Entity.Finances.RequestPay", "RequestPay")
                         .WithMany("Orders")
-                        .HasForeignKey("RequestPayId");
+                        .HasForeignKey("RequestPayId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.HasOne("ECommersShop.Entity.User", "User")
                         .WithMany("Orders")
